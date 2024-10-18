@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 
 import Contact from '@/entities/contact';
+import Feedback from '@/entities/feedback';
 
 let AppDataSource: DataSource;
 
@@ -8,7 +9,7 @@ if (process.env.NODE_ENV === 'production') {
   AppDataSource = new DataSource({
     type: 'postgres',
     url: process.env.DATABASE_URL,
-    entities: [Contact],
+    entities: [Contact, Feedback],
     synchronize: false,
     ssl: {
       rejectUnauthorized: false,
@@ -22,7 +23,7 @@ if (process.env.NODE_ENV === 'production') {
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [Contact],
+    entities: [Contact, Feedback],
     synchronize: true,
   });
 }
