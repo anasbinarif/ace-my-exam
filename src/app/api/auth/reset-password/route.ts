@@ -1,21 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 
-import { createContact } from '@/services/contact';
-import { contactSchema } from '@/types/contact';
+import { resetPassword } from '@/services/auth';
+import { resetPasswordSchema } from '@/types/auth';
+import AuthError from '@/types/auth-error';
 import { initializeDataSource } from '@/utils/typeorm';
 
 export async function POST(request: NextRequest) {
   await initializeDataSource();
-  
+
   try {
     const body = await request.json();
-    const validatedData = contactSchema.parse(body);
+    const { email } = resetPasswordSchema.parse(body);
 
-    const contact = await createContact(validatedData);
+    await resetPassword(email);
 
-    return NextResponse.json(contact, { status: 201 });
+    return NextResponse.json({ message: 'Password reset email sent successfully' }, { status: 200 });
   } catch (error: unknown) {
+    if (error instanceof AuthError) {
+      return NextResponse.json({ errors: error.message, name: error.name }, { status: error.statusCode });
+    }
     if (error instanceof ZodError) {
       return NextResponse.json({ errors: error.errors }, { status: 400 });
     }

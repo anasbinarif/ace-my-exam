@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CircularProgress } from '@mui/material';
+import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { useForm, FieldError, Merge, FieldErrorsImpl, SubmitHandler } from 'react-hook-form';
 
@@ -50,9 +51,20 @@ const LoginModal: React.FC<LoginModalProps> = ({ open, handleClose, onSwitchToSi
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
     setLoading(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const login = await signIn('credentials', {
+        redirect: false,
+        email: data.email,
+        password: data.password,
+        callbackUrl: '/',
+      });
+
+      if (!login?.ok) {
+        throw new Error('Login failed');
+      }
+
       showSnackbar('Login successful');
       reset();
+      handleClose();
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {

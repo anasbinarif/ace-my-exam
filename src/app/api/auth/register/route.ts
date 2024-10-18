@@ -1,21 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 
-import { createContact } from '@/services/contact';
-import { contactSchema } from '@/types/contact';
+import { registerUser } from '@/services/auth';
+import { registerSchema } from '@/types/auth';
+import AuthError from '@/types/auth-error';
 import { initializeDataSource } from '@/utils/typeorm';
 
 export async function POST(request: NextRequest) {
   await initializeDataSource();
-  
+
   try {
     const body = await request.json();
-    const validatedData = contactSchema.parse(body);
+    const validatedData = registerSchema.parse(body);
 
-    const contact = await createContact(validatedData);
+    const user = await registerUser(validatedData);
 
-    return NextResponse.json(contact, { status: 201 });
+    return NextResponse.json(user, { status: 201 });
   } catch (error: unknown) {
+    if (error instanceof AuthError) {
+      return NextResponse.json({ errors: error.message, name: error.name }, { status: error.statusCode });
+    }
     if (error instanceof ZodError) {
       return NextResponse.json({ errors: error.errors }, { status: 400 });
     }

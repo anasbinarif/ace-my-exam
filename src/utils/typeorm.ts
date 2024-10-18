@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 
 import Contact from '@/entities/contact';
+import { AccountEntity, SessionEntity, User, VerificationTokenEntity } from '@/entities/user';
 
 let AppDataSource: DataSource;
 
@@ -22,7 +23,7 @@ if (process.env.NODE_ENV === 'production') {
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [Contact],
+    entities: [Contact, User, SessionEntity, VerificationTokenEntity, AccountEntity],
     synchronize: true,
   });
 }

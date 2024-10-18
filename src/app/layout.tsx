@@ -11,11 +11,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body>
         <QueryClientProvider client={queryClient}>
-          <SnackbarProvider>{children}</SnackbarProvider>
+          <SnackbarProvider>
+            {children}
+          </SnackbarProvider>
         </QueryClientProvider>
       </body>
     </html>
