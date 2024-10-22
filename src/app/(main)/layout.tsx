@@ -1,3 +1,4 @@
+import '../globals.css';
 import { getServerSession } from 'next-auth';
 
 import AuthProvider from '@/contexts/AuthContext';
