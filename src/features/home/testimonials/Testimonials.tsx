@@ -10,7 +10,7 @@ const Testimonials = () => {
         showLeftLine={true}
         color='#DA9694'
         textWidth='160px'
-        gradientType="second"  />
+        gradientType="second" />
       <TestimonialsHeading variant="h2" sx={{ mt: '20px' }}>Here&apos;s What Our Students Say</TestimonialsHeading>
       <TestimonialsPara variant='body1' sx={{ mt: '23px' }} > Want to write a Feedback?  <TestimonialsLink href={'/feedback'}> Click Here</TestimonialsLink></TestimonialsPara>
       <TestimonialsSwiper />

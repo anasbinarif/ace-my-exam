@@ -143,4 +143,14 @@ export const AboutLink = styled(Link)({
   display: 'flex',
   alignItems: 'center',
   marginTop: '23px',
+  '& img': {
+    transition: 'transform 0.3s ease',
+  },
+  '&:hover': {
+    color: '#DA5077',
+    '& img': {
+      transform: 'translateX(10px)',
+      filter: 'brightness(0) saturate(100%) invert(58%) sepia(56%) saturate(5477%) hue-rotate(314deg) brightness(91%) contrast(86%)',
+    },
+  },
 });

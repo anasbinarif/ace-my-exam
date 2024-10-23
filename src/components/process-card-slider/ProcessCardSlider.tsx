@@ -3,7 +3,14 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 
-import { ProcessSliderWrapper, ProcessCard, ProcessCardNumber, ProcessCardTitle, ProcessCardDescription, ProcessContent } from './ProcessCardSlider.style';
+import {
+  ProcessSliderWrapper,
+  ProcessCard,
+  ProcessCardNumber,
+  ProcessCardTitle,
+  ProcessCardDescription,
+  ProcessContent,
+} from './ProcessCardSlider.style';
 
 interface StepCard {
   number: number;
@@ -24,10 +31,17 @@ const cardSteps: StepCard[] = [
 ];
 
 const ProcessCardSlider: React.FC = () => {
-  const [activeCard, setActiveCard] = useState<number>(0); 
+  const [activeCard, setActiveCard] = useState<number | null>(null); // Track the currently hovered card
 
-  const handleCardClick = (index: number) => {
-    setActiveCard(index);
+  const handleCardHover = (index: number) => {
+    // Skip hover effect for the first card (index === 0)
+    if (index !== 0) {
+      setActiveCard(index); // Set the hovered card as active
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setActiveCard(null); // Reset the active card when the mouse leaves
   };
 
   return (
@@ -35,10 +49,10 @@ const ProcessCardSlider: React.FC = () => {
       {cardSteps.map((step, index) => (
         <ProcessCard
           key={step.number}
-          active={index === activeCard}
-          index={index}
-          activeCard={activeCard}
-          onMouseOver={() => handleCardClick(index)}
+          active={index === activeCard} // Pass active prop to handle styling
+          index={index} // Pass the index to dynamically assign z-index
+          onMouseOver={() => handleCardHover(index)} // Set the card as active on hover, except for the first card
+          onMouseLeave={handleMouseLeave} // Reset the active card on mouse leave
         >             
           <ProcessCardNumber variant="h4">{step.number}</ProcessCardNumber>
           <ProcessContent>

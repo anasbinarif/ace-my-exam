@@ -1,6 +1,9 @@
+'use client';
+
 import Grid from '@mui/material/Grid';
 
 import { PricingWrapper, PricingHeading, PricingPara } from '@/app/(main)/pricing/Pricing.style';
+import FadeInOpacity from '@/components/animations/FadeInOpacity'; 
 import { AppContentWrapper } from '@/components/common/Global.style';
 import PricingCard from '@/components/pricing/pricing-card/PricingCard';
 import SectionHeading from '@/components/section-heading/SectionHeading';
@@ -89,46 +92,45 @@ const Pricing: React.FC = () => {
           textWidth='115px'
           gradientType='second'
         />
-        <PricingHeading>
-          Find the plan that’s right for you
-        </PricingHeading>
+        <PricingHeading>Find the plan that’s right for you</PricingHeading>
         <PricingPara>Individual Rates</PricingPara>
+        <FadeInOpacity duration={2}>
+          <Grid container justifyContent={'center'} rowSpacing={'30px'}>
+            {individualRates.map((card, index) => (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                xl={3}
+                key={index}
+                sx={{ px: { xs: '5px', lg: '10px', xl: '15px' } }}
+              >
 
-        <Grid container justifyContent={'center'} rowSpacing={'30px'}>
-          {individualRates.map((card, index) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              xl={3}
-              key={index}
-              sx={{ px: {xs: '5px', lg: '10px', xl: '15px'} }}
-            >
-              <PricingCard
-                imageSrc={card.imageSrc}
-                title={card.title}
-                prices={card.prices}
-              />
-            </Grid>
-          ))}
-        </Grid>
+                <PricingCard imageSrc={card.imageSrc} title={card.title} prices={card.prices} />
 
+              </Grid>
+            ))}
+          </Grid>
+        </FadeInOpacity>
         <PricingPara sx={{ mt: '100px' }}>Group Rates</PricingPara>
-        <Grid container justifyContent={'center'} rowSpacing={'30px'}>
-          {groupRates.map((card, index) => (
-            <Grid item xs={12}
-              sm={6}
-              md={4}
-              xl={3} key={index} sx={{ px: { xs: '5px', lg: '10px', xl: '15px' } }}>
-              <PricingCard
-                imageSrc={card.imageSrc}
-                title={card.title}
-                prices={card.prices}
-              />
-            </Grid>
-          ))}
-        </Grid>
+        <FadeInOpacity duration={2}>
+          <Grid container justifyContent={'center'} rowSpacing={'30px'}>
+            {groupRates.map((card, index) => (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                xl={3}
+                key={index}
+                sx={{ px: { xs: '5px', lg: '10px', xl: '15px' } }}
+              >
+                <PricingCard imageSrc={card.imageSrc} title={card.title} prices={card.prices} />
+              </Grid>
+            ))}
+          </Grid>
+        </FadeInOpacity>
       </AppContentWrapper>
     </PricingWrapper>
   );

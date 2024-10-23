@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { FC, useEffect, useRef } from 'react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Swiper as SwiperType } from 'swiper/types'; 
+import { Swiper as SwiperType } from 'swiper/types';
 
 import testimonialsData from '@/components/swiper/testimonials-swiper/testimonialsData.json';
 import {
@@ -28,13 +28,13 @@ import {
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
-import 'swiper/css/navigation'; 
+import 'swiper/css/navigation';
 
 interface Testimonial {
   name: string;
   subject: string;
   feedback: string;
-  date: string; 
+  date: string;
   feedbackDate: string;
   stars: number;
 }
@@ -63,8 +63,8 @@ const AboutTestimonialsSwiper: FC = () => {
   };
 
   return (
-    <TestimonialsSwiperWrapper  withPadding={true} aboutSwiperOpen={true}>
-      <TestimonialsNavigationWrapper  positionLeft='50%' width='300px'>
+    <TestimonialsSwiperWrapper withPadding={true} aboutSwiperOpen={true}>
+      <TestimonialsNavigationWrapper positionLeft='50%' width='300px'>
         <Box className='swiper-button-prev'>
           <Image src='/icons/prev.svg' alt='Prev' width={14} height={11} />
         </Box>
@@ -85,7 +85,7 @@ const AboutTestimonialsSwiper: FC = () => {
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
         }}
-        modules={[EffectCoverflow, Pagination, Navigation]} 
+        modules={[EffectCoverflow, Pagination, Navigation]}
       >
         {testimonialsData?.map((testimonial: Testimonial, index: number) => (
           <SwiperSlide key={index}>
@@ -115,7 +115,7 @@ const AboutTestimonialsSwiper: FC = () => {
                       src='/icons/quotation.svg'
                       alt='quotation-icon'
                       layout='fill'
-                      loading='lazy' 
+                      loading='lazy'
                     />
                   </QuotationImageHead>
                 </TestimonialsInfoHead>
@@ -127,19 +127,24 @@ const AboutTestimonialsSwiper: FC = () => {
                 </TestimonialsCardPara>
               </Box>
               <TestimonialsDateHead>
-                <TestimonialsParaTwo variant='subtitle2'>
-                Feedback given: {testimonial.feedbackDate}
-                </TestimonialsParaTwo>
+                <Box>
+                  <TestimonialsParaTwo variant='subtitle2'>
+                    Feedback given:
+                  </TestimonialsParaTwo>
+                  <TestimonialsParaTwo variant='subtitle2'>
+                    {testimonial.feedbackDate}
+                  </TestimonialsParaTwo>
+                </Box>
                 <TrustpilotImage href={'https://www.trustpilot.com/'} target='_blank'>
                   <Image
                     src='/home/trustpilot.svg'
                     alt='trustpilot-icon'
-                    layout='fill' 
+                    layout='fill'
                     loading='lazy'
                   />
                 </TrustpilotImage>
               </TestimonialsDateHead>
-            
+
             </TestimonialsCard>
           </SwiperSlide>
         ))}

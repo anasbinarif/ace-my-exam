@@ -1,15 +1,6 @@
 'use client';
 
-import { Box, styled, keyframes } from '@mui/material';
-
-const infiniteScroll = keyframes`
-  0% {
-    transform: translateX(0); 
-  }
-  100% {
-    transform: translateX(-50%); 
-  }
-`;
+import { Box, styled } from '@mui/material';
 
 export const InstituteWrapper = styled(Box)({
   width: '100%',
@@ -25,11 +16,7 @@ export const InstituteTrack = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'start',
-  whiteSpace: 'nowrap',
-  animation: `${infiniteScroll} 40s linear infinite`, 
-  '&:hover': {
-    animationPlayState: 'paused', 
-  },
+  whiteSpace: 'nowrap', 
 });
 
 export const InstituteImage = styled('img')(({ theme }) => ({

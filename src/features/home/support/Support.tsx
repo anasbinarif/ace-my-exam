@@ -2,21 +2,22 @@
 
 import Image from 'next/image';
 
+import FadeIn from '@/components/animations/FadeIn';
 import { AppContentWrapper } from '@/components/common/Global.style';
 import {
-  SupportWrapper,
-  SupportHeading,
-  SupportContentHead,
-  SupportPara,
-  SupportImageContainer,
-  SupportImage,
-  SupportImageOverlay,
-  SupportCard,
   SupportButton,
-  SupportCardInnerHead,
+  SupportCard,
   SupportCardBtnHead,
-  SupportCardPara,
   SupportCardDivider,
+  SupportCardInnerHead,
+  SupportCardPara,
+  SupportContentHead,
+  SupportHeading,
+  SupportImage,
+  SupportImageContainer,
+  SupportImageOverlay,
+  SupportPara,
+  SupportWrapper,
 } from '@/features/home/support/Support.style';
 
 const Support: React.FC = () => {
@@ -33,16 +34,18 @@ const Support: React.FC = () => {
         <SupportImageOverlay />
       </SupportImageContainer>
       <AppContentWrapper>
-        <SupportContentHead>
-          <SupportHeading variant='h2'>
-            Achieve Academic Excellence Today with Tailored Support!
-          </SupportHeading>
-          <SupportPara>
-            From GCSEs and A-Levels to independent school entrance exams and
-            scholarships, AceMyExam’s expert tutors provide the personalized,
-            one-on-one support you need.
-          </SupportPara>
-        </SupportContentHead>
+        <FadeIn direction="left" distance={200} duration={1.5} delay={1}>
+          <SupportContentHead>
+            <SupportHeading variant='h2'>
+              Achieve Academic Excellence Today with Tailored Support!
+            </SupportHeading>
+            <SupportPara>
+              From GCSEs and A-Levels to independent school entrance exams and
+              scholarships, AceMyExam’s expert tutors provide the personalized,
+              one-on-one support you need.
+            </SupportPara>
+          </SupportContentHead>
+        </FadeIn>
         <SupportCard>
           <SupportCardInnerHead>
             <SupportCardPara variant='body1'>

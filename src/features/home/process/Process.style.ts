@@ -19,20 +19,8 @@ export const ProcessMain = styled(Box)({
   width: '100%',
   overflow: 'auto',
   '&::-webkit-scrollbar': {
-    width: '10px',
-    borderRadius: '50px',
-    height: '10px'
+    display: 'none !important'
   },
-
-  '&::-webkit-scrollbar-track': {
-    background: '#da969440',
-    borderRadius: '50px',
-  },
-
-  '&::-webkit-scrollbar-thumb': {
-    background: '#1f1f1f',
-    borderRadius: '50px',
-  }
 
 });
 

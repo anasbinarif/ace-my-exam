@@ -18,26 +18,26 @@ const cardsData = [
   {
     subTitle: 'AQA, AQA, EDEXCEL, OCR, & CIE',
     title: 'Alevel Maths Resources',
-    image: '/home/Resources1.webp', 
-    buttonText: 'Start Now'
+    image: '/home/Resources1.webp',
+    buttonText: 'Get Started'
   },
   {
     subTitle: 'AQA, EDEXCEL, OCR, & CIE',
     title: 'GCSE/IGCSE Maths Resources',
-    image: '/home/Resources2.webp', 
-    buttonText: 'Start Now'
+    image: '/home/Resources2.webp',
+    buttonText: 'Get Started'
   },
   {
     subTitle: 'AQA, EDEXCEL, OCR, & CIE',
     title: 'GCSE/IGCSE Science Resources',
-    image: '/home/Resources3.webp', 
-    buttonText: 'Start Now'
+    image: '/home/Resources3.webp',
+    buttonText: 'Get Started'
   },
   {
     subTitle: 'Math & Science',
     title: 'Entrance & scholarship Exams Resources',
-    image: '/home/Resources3.webp', 
-    buttonText: 'Start Now'
+    image: '/home/Resources3.webp',
+    buttonText: 'Get Started'
   }
 ];
 

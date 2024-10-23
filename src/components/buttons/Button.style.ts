@@ -30,7 +30,7 @@ export const Button = styled(ButtonBase, {
   textTransform: 'capitalize',
   whiteSpace: 'nowrap',
   '&:hover': {
-    backgroundColor: special ? '#d74642' : '',
+    backgroundColor: special ? '#DA5077' : '',
   },
   [theme.breakpoints.down(576)]: {
     fontSize: '14px !important',

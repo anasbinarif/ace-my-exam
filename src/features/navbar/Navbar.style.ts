@@ -5,6 +5,7 @@ import Link from 'next/link';
 const CommonNavbarBox = styled(Box)({
   display: 'flex',
   alignItems: 'center',
+
 });
 
 export const CommonMenu = styled(Menu)({
@@ -23,12 +24,13 @@ export const CommonMenu = styled(Menu)({
     fontFamily: 'Lato, sans-serif',
     borderRadius: '4px',
     padding: '8px',
+    justifyContent: 'center'
   },
 });
 
 export const NavbarContainer = styled(AppBar)({
   width: '100%',
-  marginTop: '25px !important',
+  marginTop: '20px !important',
   backgroundColor: 'transparent',
   boxShadow: 'none',
 });
@@ -98,6 +100,10 @@ export const NavbarLink = styled(Link)({
   fontSize: '15px',
   textTransform: 'capitalize',
   fontFamily: 'Lato, sans-serif',
+  '&:hover':{
+    color: '#DA5077',
+    transition: 'all 0.3s ease',
+  },
 });
 
 export const NavTypography = styled(Typography)({

@@ -148,6 +148,7 @@ export const SupportCard = styled(Box)(({ theme }) =>  ({
   position: 'absolute',
   bottom: '-37px',
   maxWidth: '1148px',
+  opacity: 1,
   [theme.breakpoints.down('xl')]: {
     maxWidth: '95%',
   },
@@ -193,7 +194,7 @@ export const SupportButton = styled(Link)(({ theme }) => ({
     transition: 'transform 0.3s ease',
   },
   '&:hover': {
-    backgroundColor: '#d74642',
+    backgroundColor: '#DA5077',
     color: '#ffffff',
     '& img': {
       transform: 'translateX(10px)',

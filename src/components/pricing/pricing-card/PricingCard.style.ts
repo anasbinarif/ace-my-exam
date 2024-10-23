@@ -2,9 +2,8 @@
 import { Box, List, ListItem, styled, Typography } from '@mui/material';
 
 export const PricingCardWrapper = styled(Box)(({ theme }) => ({
- 
   width: '100%',
-  height:'100%',
+  height: '100%',
   backgroundColor: '#fff',
   boxShadow: ' 0px 4px 40.1px 0px rgba(0, 0, 0, 0.13)',
   borderRadius: '20px',

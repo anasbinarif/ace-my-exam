@@ -8,7 +8,7 @@ const BaseBoxFlex = styled(Box)({
   alignItems: 'center',
 });
 
-export const TestimonialsSwiperWrapper = styled(Box)<{ withPadding?: boolean, aboutSwiperOpen?: boolean }>(({ theme, withPadding, aboutSwiperOpen }) => ({
+export const TestimonialsSwiperWrapper = styled(Box)<{ withPadding?: boolean, aboutSwiperOpen?: boolean }>(({withPadding, aboutSwiperOpen }) => ({
   width: '100%',
   height: '100% !important',
   overflow: 'hidden',
@@ -17,13 +17,14 @@ export const TestimonialsSwiperWrapper = styled(Box)<{ withPadding?: boolean, ab
     width: '100%',
     padding: '50px 0 !important',
     position: 'relative',
-    maxHeight: '100% !important',
-    height: 'auto !important',
   },
   '& .swiper-slide:not(.swiper-slide-active):not(.swiper-slide-prev):not(.swiper-slide-next)': {
     visibility: 'hidden !important',
     opacity: '0 !important',
     transition: 'all 0.3s ease !important',
+  },
+  '& .swiper-wrapper':{
+    height: '100% !important',
   },
   '& .swiper-slide': {
     maxWidth: aboutSwiperOpen ? '100%': '556px',
@@ -31,11 +32,7 @@ export const TestimonialsSwiperWrapper = styled(Box)<{ withPadding?: boolean, ab
     transition: 'all 0.3s ease !important',
     minHeight: '426px !important',
     maxHeight: '100% !important',
-    height: 'auto !important',
     padding: withPadding ? '0 10px' : '0',
-    [theme.breakpoints.down(576)]: {
-      minHeight: '256px !important',
-    }
   },
   '& .swiper-slide-active, & .swiper-slide-prev, & .swiper-slide-next': {
     visibility: 'visible !important',
@@ -62,9 +59,10 @@ export const TestimonialsCard = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'space-between',
   [theme.breakpoints.down('sm')]: {
-    padding: '58px 10px',
-    minHeight: '271px',
-  }
+    padding: '30px 10px',
+    height: '100% !important',
+    maxHeight: '100% !important',
+  },
 }));
 
 export const TestimonialsNavigationWrapper = styled(Box)<{ positionLeft: string; width: string }>(({ positionLeft, width }) => ({
@@ -101,7 +99,7 @@ export const TestimonialsOccupationPara = styled(BaseTextStyle)({
 
 export const TestimonialsCardPara = styled(BaseTextStyle)(({ theme }) => ({
   fontWeight: 400,
-  fontSize: '13px',
+  fontSize: '14px',
   color: '#787878',
   marginTop: '29px',
   [theme.breakpoints.down(576)]: {
@@ -112,7 +110,7 @@ export const TestimonialsCardPara = styled(BaseTextStyle)(({ theme }) => ({
 
 export const TestimonialsParaTwo = styled(BaseTextStyle)({
   fontWeight: 400,
-  fontSize: '9px',
+  fontSize: '12px',
   color: '#818181',
 });
 

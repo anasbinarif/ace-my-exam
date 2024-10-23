@@ -1,6 +1,7 @@
 import Grid from '@mui/material/Grid2';
 import Image from 'next/image';
 
+import FadeIn from '@/components/animations/FadeIn';
 import SectionHeading from '@/components/section-heading/SectionHeading';
 
 import {
@@ -72,104 +73,110 @@ const AboutFounder: React.FC = () => {
       <FounderContentContainer>
         <Grid container justifyContent={'center'} columns={24}>
           <Grid size={{ xs: 24, lg: 14 }} sx={{ px: {xs: '0', md: '15px'} }}>
-            <SectionHeading
-              text="Our Founder"
-              align="start"
-              showLeftLine={false}
-              color="#000000"
-              gradientType="second"
-            />
-            <FounderHeading>Dr. Asma Chaudhri</FounderHeading>
-            <FounderSubHeading sx={{mb:{xs: '20px', md: '30px'}}}>An Educator Driven by Passion</FounderSubHeading>
-            <FounderContent>
-              Meet Dr. Asma Chaudhri, our founder. She&apos;s been helping students reach their full potential for over 16 years!
-              She&apos;s got a passion for helping students succeed and her background in both academia and high-stakes finance gives her a unique perspective.
-            </FounderContent>
+            <FadeIn direction="up" distance={100} duration={1}>
+              <SectionHeading
+                text="Our Founder"
+                align="start"
+                showLeftLine={false}
+                color="#000000"
+                gradientType="second"
+              />
+              <FounderHeading>Dr. Asma Chaudhri</FounderHeading>
+              <FounderSubHeading sx={{ mb: { xs: '20px', md: '30px' } }}>An Educator Driven by Passion</FounderSubHeading>
+              <FounderContent>
+                Meet Dr. Asma Chaudhri, our founder. She&apos;s been helping students reach their full potential for over 16 years!
+                She&apos;s got a passion for helping students succeed and her background in both academia and high-stakes finance gives her a unique perspective.
+              </FounderContent>
 
-            <FounderList>
-              {educationList.map((edu, index) => (
-                <FounderListItem key={index}>
-                  <Image
-                    src={'/icons/check.svg'}
-                    width={23}
-                    height={23}
-                    alt="icon"
-                    style={{ marginRight: '8px' }}
-                  />
-                  <FounderSubHeading>
-                    <strong>{edu.degree}</strong> {edu.subject && `in ${edu.subject}`} {edu.institution && <strong>{`– ${edu.institution}`}</strong>}
-                  </FounderSubHeading>
-                </FounderListItem>
-              ))}
-            </FounderList>
+              <FounderList>
+                {educationList.map((edu, index) => (
+                  <FounderListItem key={index}>
+                    <Image
+                      src={'/icons/check.svg'}
+                      width={23}
+                      height={23}
+                      alt="icon"
+                      style={{ marginRight: '8px' }}
+                    />
+                    <FounderSubHeading>
+                      <strong>{edu.degree}</strong> {edu.subject && `in ${edu.subject}`} {edu.institution && <strong>{`– ${edu.institution}`}</strong>}
+                    </FounderSubHeading>
+                  </FounderListItem>
+                ))}
+              </FounderList>
+            </FadeIn>
           </Grid>
 
           <Grid size={{ xs: 24, lg: 10 }} sx={{ px: {xs: '0', md: '15px'} }}>
-            <FounderImgHead>
-              <Image src="/about/founder.webp" alt="founder" layout="fill" objectFit="cover" />
-            </FounderImgHead>
+            <FadeIn direction="up" distance={500} duration={1.5} delay={0.6}>
+              <FounderImgHead>
+                <Image src="/about/founder.webp" alt="founder" layout="fill" objectFit="cover" />
+              </FounderImgHead>
+            </FadeIn>
           </Grid>
 
           <Grid size={24} sx={{ px: {xs: '0', md: '15px'} }}>
-            <FounderCard>
-              <FounderCardInnerHead>
-                <FounderCardHeading>About Acemyexam</FounderCardHeading>
-                <FounderList>
-                  {stats.map((stat, index) => (
-                    <FounderListItem key={index}>
-                      <Image
-                        src={'/icons/check.svg'}
-                        width={13}
-                        height={13}
-                        alt="icon"
-                        style={{ marginRight: '8px' }}
-                      />
-                      <FounderCardListText>{stat}</FounderCardListText>
-                    </FounderListItem>
-                  ))}
-                </FounderList>
-              </FounderCardInnerHead>
+            <FadeIn direction="up" distance={100} duration={1} delay={0.2}>
+              <FounderCard>
+                <FounderCardInnerHead>
+                  <FounderCardHeading>About Acemyexam</FounderCardHeading>
+                  <FounderList>
+                    {stats.map((stat, index) => (
+                      <FounderListItem key={index}>
+                        <Image
+                          src={'/icons/check.svg'}
+                          width={13}
+                          height={13}
+                          alt="icon"
+                          style={{ marginRight: '8px' }}
+                        />
+                        <FounderCardListText>{stat}</FounderCardListText>
+                      </FounderListItem>
+                    ))}
+                  </FounderList>
+                </FounderCardInnerHead>
 
-              <FounderCardDivider orientation="vertical" variant="middle" flexItem />
+                <FounderCardDivider orientation="vertical" variant="middle" flexItem />
 
-              <FounderCardInnerHead>
-                <FounderCardHeading>Teaching Philosophy</FounderCardHeading>
-                <FounderList>
-                  {philosophy.map((item, index) => (
-                    <FounderListItem key={index}>
-                      <Image
-                        src={'/icons/check.svg'}
-                        width={13}
-                        height={13}
-                        alt="icon"
-                        style={{ marginRight: '8px' }}
-                      />
-                      <FounderCardListText>{item}</FounderCardListText>
-                    </FounderListItem>
-                  ))}
-                </FounderList>
-              </FounderCardInnerHead>
+                <FounderCardInnerHead>
+                  <FounderCardHeading>Teaching Philosophy</FounderCardHeading>
+                  <FounderList>
+                    {philosophy.map((item, index) => (
+                      <FounderListItem key={index}>
+                        <Image
+                          src={'/icons/check.svg'}
+                          width={13}
+                          height={13}
+                          alt="icon"
+                          style={{ marginRight: '8px' }}
+                        />
+                        <FounderCardListText>{item}</FounderCardListText>
+                      </FounderListItem>
+                    ))}
+                  </FounderList>
+                </FounderCardInnerHead>
 
-              <FounderCardDivider orientation="vertical" variant="middle" flexItem />
+                <FounderCardDivider orientation="vertical" variant="middle" flexItem />
 
-              <FounderCardInnerHead>
-                <FounderCardHeading>Subjects Offered</FounderCardHeading>
-                <FounderList>
-                  {subjectsOffered.map((subject, index) => (
-                    <FounderListItem key={index}>
-                      <Image
-                        src={'/icons/check.svg'}
-                        width={13}
-                        height={13}
-                        alt="icon"
-                        style={{ marginRight: '8px' }}
-                      />
-                      <FounderCardListText>{subject}</FounderCardListText>
-                    </FounderListItem>
-                  ))}
-                </FounderList>
-              </FounderCardInnerHead>
-            </FounderCard>
+                <FounderCardInnerHead>
+                  <FounderCardHeading>Subjects Offered</FounderCardHeading>
+                  <FounderList>
+                    {subjectsOffered.map((subject, index) => (
+                      <FounderListItem key={index}>
+                        <Image
+                          src={'/icons/check.svg'}
+                          width={13}
+                          height={13}
+                          alt="icon"
+                          style={{ marginRight: '8px' }}
+                        />
+                        <FounderCardListText>{subject}</FounderCardListText>
+                      </FounderListItem>
+                    ))}
+                  </FounderList>
+                </FounderCardInnerHead>
+              </FounderCard>
+            </FadeIn>
           </Grid>
         </Grid>
       </FounderContentContainer>

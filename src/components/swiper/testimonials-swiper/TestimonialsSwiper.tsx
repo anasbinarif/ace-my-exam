@@ -133,9 +133,14 @@ const TestimonialsSwiper: FC = () => {
                 </TestimonialsCardPara>
               </Box>
               <TestimonialsDateHead>
-                <TestimonialsParaTwo variant='subtitle2'>
-                Feedback given: {testimonial.feedbackDate}
-                </TestimonialsParaTwo>
+                <Box>
+                  <TestimonialsParaTwo variant='subtitle2'>
+                    Feedback given:
+                  </TestimonialsParaTwo>
+                  <TestimonialsParaTwo variant='subtitle2'>
+                    {testimonial.feedbackDate}
+                  </TestimonialsParaTwo>
+                </Box>
                 <TrustpilotImage href={'https://www.trustpilot.com/'} target='_blank'>
                   <Image
                     src='/home/trustpilot.svg'

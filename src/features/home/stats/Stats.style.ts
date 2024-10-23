@@ -20,8 +20,9 @@ export const StatsContentWrapper = styled(Box)(({ theme }) => ({
     width: '100%',
     height: '50%',
     backgroundColor: '#fffbfb',
-    borderRadius: '100px 100px 0 0',
+    borderRadius: 'var(--dynamic-border-radius, 0 0 0 0)', 
     zIndex: '-1',
+    transition: 'border-radius 0.5s ease-in-out',
     [theme.breakpoints.down('md')]: {
       borderRadius: '30px 30px 0 0',
     },
@@ -32,10 +33,13 @@ export const StatsContentWrapper = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     transform: 'none',
     position: 'absolute',
-    top: '-250px'
+    top: '-250px',
   },
   [theme.breakpoints.down('sm')]: {
-    top: '-230px'
+    top: '-230px',
+  },
+  [theme.breakpoints.down(576)]: {
+    top: '-190px',
   },
 }));
 
@@ -58,7 +62,7 @@ export const StatsCard = styled(Card)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     padding: '30px 15px',
   },
-  [theme.breakpoints.down('xs')]: {
+  [theme.breakpoints.down(576)]: {
     padding: '20px 7px',
   },
 }));
@@ -70,11 +74,11 @@ export const StatCardHeading = styled(CommonStatTypography)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     fontSize: '16px',
   },
-  [theme.breakpoints.down('xs')]: {
-    fontSize: '14px',
+  [theme.breakpoints.down(576)]: {
+    fontSize: '12px',
   },
   [theme.breakpoints.down(400)]: {
-    fontSize: '12px',
+    fontSize: '10px',
   },
 }));
 

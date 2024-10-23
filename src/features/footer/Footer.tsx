@@ -69,7 +69,9 @@ const FooterMediaItem = styled(ListItem)(({ theme }) => ({
     paddingLeft: '6px',
   },
   '&:hover': {
-    filter: 'brightness(0) saturate(100%) invert(0%) sepia(5%) saturate(7500%) hue-rotate(228deg) brightness(106%) contrast(106%)', 
+    filter: 'brightness(0) saturate(100%) invert(61%) sepia(68%) saturate(5764%) hue-rotate(316deg) brightness(93%) contrast(82%)',
+    transform: 'scale(1.2)' 
+
   },
 }));
 
@@ -91,6 +93,10 @@ const FooterLink = styled(Link)(({ theme }) => ({
     textAlign: 'end',
     width: '100%',
     fontSize: '15px',
+  },
+  '&:hover':{
+    color: '#DA5077',
+    transition: 'all 0.3s ease',
   },
 }));
 
