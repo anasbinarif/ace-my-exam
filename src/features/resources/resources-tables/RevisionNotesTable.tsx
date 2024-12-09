@@ -9,6 +9,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import { useSnackbar } from 'contexts/SnackbarContext';
+import useMultiStepForm from 'hooks/useMultiStepper';
 import { handleDownload } from 'utils/handleDownload';
 
 import {
@@ -26,6 +27,7 @@ import { ContentWithChildren } from '../../../types/content';
 
 const RevisionNotesTable: React.FC<{ data: ContentWithChildren[]; isLoading: boolean }> = ({ data }) => {
   const { showSnackbar } = useSnackbar();
+  const { page, setPage } = useMultiStepForm();
   
   const getDownloadUrl = (data: ContentWithChildren, resourceType: RevisionNoteResourceType) => {
     if (data.revisionNotes && data.revisionNotes[0]?.resources)
@@ -124,7 +126,7 @@ const RevisionNotesTable: React.FC<{ data: ContentWithChildren[]; isLoading: boo
           mt: '30px'
         }}
       >
-        <StyledPagination count={10} />
+        <StyledPagination count={data.length / 2} page={page} onChange={(_, value) => setPage(value)} />
       </PaginationHead>
     </Box>
   );

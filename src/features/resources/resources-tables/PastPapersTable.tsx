@@ -7,6 +7,7 @@ import React from 'react';
 
 import { PastPaperWithResource } from 'app/api/resources/route';
 import { useSnackbar } from 'contexts/SnackbarContext';
+import useMultiStepForm from 'hooks/useMultiStepper';
 import { handleDownload } from 'utils/handleDownload';
 
 import {
@@ -22,8 +23,9 @@ import { PaginationHead, ResourcesPara, ResourcesSubHeading } from '../../../app
 import { StyledPagination } from '../../../components/pagination/Pagination.style';
 
 const PastPapersTable: React.FC<{ data: PastPaperWithResource[]; isLoading: boolean }> = ({ data }) => {
-  const { showSnackbar } = useSnackbar();  
-  
+  const { showSnackbar } = useSnackbar();
+  const { page, setPage } = useMultiStepForm();
+
   const papersByYear = data.reduce((acc, paper) => {
     if (!acc[paper.year]) {
       acc[paper.year] = [];
@@ -56,61 +58,81 @@ const PastPapersTable: React.FC<{ data: PastPaperWithResource[]; isLoading: bool
             </Box>
           </Box>
           <Box></Box>
-          {Object.keys(papersByYear).map((year: string, index: number) => (
-            <CollapseContainer key={index}>
-              <ChapterHeading
-                expandIcon={
-                  <ExpandIconHead>
-                    <Image src="/icons/down.svg" alt="Collapse" width={10} height={10} />
-                  </ExpandIconHead>
-                }
-                sx={{ maxWidth: '352px' }}
-              >
-                {year}
-              </ChapterHeading>
+          {Object.keys(papersByYear)
+            .slice((page - 1) * 2, page * 2)
+            .map((year: string, index: number) => (
+              <CollapseContainer key={index}>
+                <ChapterHeading
+                  expandIcon={
+                    <ExpandIconHead>
+                      <Image src="/icons/down.svg" alt="Collapse" width={10} height={10} />
+                    </ExpandIconHead>
+                  }
+                  sx={{ maxWidth: '352px' }}
+                >
+                  {year}
+                </ChapterHeading>
 
-              <InnerCollapse sx={{ py: 0, px: '15px', mt: '11px' }}>
-                {papersByYear[year].map((paper) => (
-                  <Box
-                    key={paper.id}
-                    sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: '4px', py: '2px' }}
-                  >
-                    <SubtopicHeading sx={{ flex: '0 0 50%' }}>{paper.title}</SubtopicHeading>
-                    {getDownloadUrl(paper, PastPaperResourceType.QUESTION_PAPER) !== '' ? (
-                      <DownloadIconButton
-                        sx={{ flex: '0 0 16.67%' }}
-                        onClick={() => handleDownload(getDownloadUrl(paper, PastPaperResourceType.QUESTION_PAPER), `${paper.title}_${paper.year}_${PastPaperResourceType.QUESTION_PAPER}`, showSnackbar)}
-                      >
-                        <Image src="/icons/downloadIcon.svg" alt="download" width={20} height={20} />
-                      </DownloadIconButton>
-                    ) : (
-                      <Box></Box>
-                    )}
-                    {getDownloadUrl(paper, PastPaperResourceType.MARKING_SCHEME) !== '' ? (
-                      <DownloadIconButton
-                        sx={{ flex: '0 0 16.67%' }}
-                        onClick={() => handleDownload(getDownloadUrl(paper, PastPaperResourceType.MARKING_SCHEME), `${paper.title}_${paper.year}_${PastPaperResourceType.MARKING_SCHEME}`, showSnackbar)}
-                      >
-                        <Image src="/icons/downloadIcon.svg" alt="download" width={20} height={20} />
-                      </DownloadIconButton>
-                    ) : (
-                      <Box></Box>
-                    )}
-                    {getDownloadUrl(paper, PastPaperResourceType.SOLUTION_BOOKLET) !== '' ? (
-                      <DownloadIconButton
-                        sx={{ flex: '0 0 16.67%' }}
-                        onClick={() => handleDownload(getDownloadUrl(paper, PastPaperResourceType.SOLUTION_BOOKLET), `${paper.title}_${paper.year}_${PastPaperResourceType.SOLUTION_BOOKLET}`, showSnackbar)}
-                      >
-                        <Image src="/icons/downloadIcon.svg" alt="download" width={20} height={20} />
-                      </DownloadIconButton>
-                    ) : (
-                      <Box></Box>
-                    )}
-                  </Box>
-                ))}
-              </InnerCollapse>
-            </CollapseContainer>
-          ))}
+                <InnerCollapse sx={{ py: 0, px: '15px', mt: '11px' }}>
+                  {papersByYear[year].map((paper) => (
+                    <Box
+                      key={paper.id}
+                      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: '4px', py: '2px' }}
+                    >
+                      <SubtopicHeading sx={{ flex: '0 0 50%' }}>{paper.title}</SubtopicHeading>
+                      {getDownloadUrl(paper, PastPaperResourceType.QUESTION_PAPER) !== '' ? (
+                        <DownloadIconButton
+                          sx={{ flex: '0 0 16.67%' }}
+                          onClick={() =>
+                            handleDownload(
+                              getDownloadUrl(paper, PastPaperResourceType.QUESTION_PAPER),
+                              `${paper.title}_${paper.year}_${PastPaperResourceType.QUESTION_PAPER}`,
+                              showSnackbar
+                            )
+                          }
+                        >
+                          <Image src="/icons/downloadIcon.svg" alt="download" width={20} height={20} />
+                        </DownloadIconButton>
+                      ) : (
+                        <Box></Box>
+                      )}
+                      {getDownloadUrl(paper, PastPaperResourceType.MARKING_SCHEME) !== '' ? (
+                        <DownloadIconButton
+                          sx={{ flex: '0 0 16.67%' }}
+                          onClick={() =>
+                            handleDownload(
+                              getDownloadUrl(paper, PastPaperResourceType.MARKING_SCHEME),
+                              `${paper.title}_${paper.year}_${PastPaperResourceType.MARKING_SCHEME}`,
+                              showSnackbar
+                            )
+                          }
+                        >
+                          <Image src="/icons/downloadIcon.svg" alt="download" width={20} height={20} />
+                        </DownloadIconButton>
+                      ) : (
+                        <Box></Box>
+                      )}
+                      {getDownloadUrl(paper, PastPaperResourceType.SOLUTION_BOOKLET) !== '' ? (
+                        <DownloadIconButton
+                          sx={{ flex: '0 0 16.67%' }}
+                          onClick={() =>
+                            handleDownload(
+                              getDownloadUrl(paper, PastPaperResourceType.SOLUTION_BOOKLET),
+                              `${paper.title}_${paper.year}_${PastPaperResourceType.SOLUTION_BOOKLET}`,
+                              showSnackbar
+                            )
+                          }
+                        >
+                          <Image src="/icons/downloadIcon.svg" alt="download" width={20} height={20} />
+                        </DownloadIconButton>
+                      ) : (
+                        <Box></Box>
+                      )}
+                    </Box>
+                  ))}
+                </InnerCollapse>
+              </CollapseContainer>
+            ))}
         </Box>
       </Box>
       <PaginationHead
@@ -120,7 +142,7 @@ const PastPapersTable: React.FC<{ data: PastPaperWithResource[]; isLoading: bool
           mt: '30px',
         }}
       >
-        <StyledPagination count={10} />
+        <StyledPagination count={(Object.values(papersByYear).length / 2)} page={page} onChange={(_, value) => setPage(value)} />
       </PaginationHead>
     </Box>
   );

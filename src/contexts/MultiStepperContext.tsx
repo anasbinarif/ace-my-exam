@@ -16,6 +16,8 @@ interface MultiStepFormContextProps {
   selectOptionNavbar: (stepName: string, option: IStepOption) => void;
   setSelectedOptions: React.Dispatch<React.SetStateAction<Record<string, IStepOption>>>;
   setCurrentStep: (step: StepKey) => void;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
   breadcrumbs: {
     key: number;
     title: string;
@@ -40,6 +42,7 @@ export interface IStepOption {
 
 export const MultiStepFormProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentStep, setCurrentStep] = useState<StepKey>(1);
+  const [page, setPage] = useState<number>(1);
   const [selectedOptions, setSelectedOptions] = useState<Record<string, IStepOption>>({});
   const [isNextDisabled, setIsNextDisabled] = useState(true);
   const [breadcrumbs, setBreadcrumbs] = useState<{ key: number; title: string }[]>([]);
@@ -133,6 +136,8 @@ export const MultiStepFormProvider: React.FC<{ children: React.ReactNode }> = ({
         selectOptionNavbar,
         setCurrentStep,
         setSelectedOptions,
+        page,
+        setPage,
         breadcrumbs,
         setBreadcrumbs,
       }}

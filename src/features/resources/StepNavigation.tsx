@@ -9,12 +9,7 @@ import { StyledPagination } from '../../components/pagination/Pagination.style';
 import useMultiStepForm from '../../hooks/useMultiStepper';
 
 const StepNavigation: React.FC = () => {
-  const {
-    handleBack,
-    handleNext,
-    currentStep,
-    isNextDisabled,
-  } = useMultiStepForm();
+  const { handleBack, handleNext, currentStep, isNextDisabled, page, setPage } = useMultiStepForm();
 
   return (
     <Box
@@ -35,14 +30,7 @@ const StepNavigation: React.FC = () => {
           flex: 1,
         }}
       >
-        <Button
-          fontSize="16px"
-          borderRadius="50px"
-          width="212px"
-          height="60px"
-          onClick={handleBack}
-          disabled={currentStep === 1}
-        >
+        <Button fontSize="16px" borderRadius="50px" width="212px" height="60px" onClick={handleBack} disabled={currentStep === 1}>
           Previous
         </Button>
         {currentStep <= 3 && (
@@ -67,7 +55,7 @@ const StepNavigation: React.FC = () => {
             width: { xs: '100%', md: 'unset' },
           }}
         >
-          <StyledPagination count={10} />
+          <StyledPagination page={page} count={10} onChange={(_, value) => setPage(value)} />
         </PaginationHead>
       )}
     </Box>

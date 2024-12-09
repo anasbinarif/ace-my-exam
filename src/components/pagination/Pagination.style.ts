@@ -3,7 +3,7 @@ import { styled } from '@mui/system';
 
 export const StyledPagination = styled(Pagination)(({ theme }) => ({
   '& .MuiPagination-ul': {
-    justifyContent: 'center',
+    justifyContent: 'start',
     padding: '10px',
     [theme.breakpoints.down('sm')]: {
       padding: '0',
